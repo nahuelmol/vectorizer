@@ -75,7 +75,7 @@ void diagonal_matrix_calculator(){
 
 	es.compute(*dir,/* computeEigenvectors = */ false);
 	cout << "The eigenvalues of A are: " << es.eigenvalues().transpose() << endl;
-	cout << "The eigenvectors of A are: " << es.eigenvectors() << endl;
+	//cout << "The eigenvectors of A are: " << es.eigenvectors() << endl;
 	//while(i<N){
 	//	cout << "The eigenvector " << i << " is: " << endl << es.eigenvectors().col(i) << endl;
 	//	i++;
@@ -86,22 +86,27 @@ void diagonal_matrix_calculator(){
 void inverse_matrix_calculator(){
 
 	using std::cout;
-
+	using std::endl;
+	
 	MatrixXd *dir = MatrixInput();
+	MatrixXd original = *dir;
+	MatrixXd matriz_inversa = original.inverse();
 
-	cout << "\ndireccion: "<< dir;
-	cout << "\ncontent: "<< *dir;
-
+	cout << "\nOriginal: "<< endl << *dir << endl;
+	cout << "\nTranspuesta: " << endl << matriz_inversa << endl;
 }
 
 void transpuesta_matrix_calculator(){
 
 	using std::cout;
+	using std::endl;
 
 	MatrixXd *dir = MatrixInput();
+	MatrixXd original = *dir;
+	MatrixXd matriz_transpuesta = original.transpose();
 
-	cout << "\ndireccion: "<< dir;
-	cout << "\ncontent: "<< *dir;
+	cout << "\nOriginal: "<< endl << *dir << endl;
+	cout << "\nTranspuesta: " << endl << matriz_transpuesta << endl;
 
 }
 
@@ -120,6 +125,7 @@ void myinterface(){
 		cout <<	"1.Encontrar matriz diagonal\n";
 		cout << "2.Encontrar inversa\n";
 		cout << "3.Encontrar transpuesta\n";
+		cout << "4.Stop it!\n";
 
 		cin >> opc;
 
@@ -130,9 +136,11 @@ void myinterface(){
 			break;
 			case 2:
 				cout << "trying to find the reverse matrix";
+				inverse_matrix_calculator();
 			break;
 			case 3:
 				cout << "trying to find the transpose matrix";
+				transpuesta_matrix_calculator();
 			break;
 
 			default:
@@ -148,21 +156,6 @@ void myinterface(){
 }
 
 int main(){
-
-	MatrixXd M = MatrixXd::Random(3,3);
-	VectorXd v(3);
-  	v << 1, 0, 0;
-
-  	std::cout << "M =" << std::endl << M << std::endl;
-  	std::cout << "v =" << std::endl << v << std::endl;
-  	std::cout << "M * v =" << std::endl << M * v << std::endl;
-
-  	MatrixXd m(2,2);
-  	m(0,0) = 3;
-  	m(1,0) = 2.5;
-  	m(0,1) = -1;
-  	m(1,1) = m(1,0) + m(0,1);
-  	//std::cout << m << std::endl;
 
   	myinterface();
 
